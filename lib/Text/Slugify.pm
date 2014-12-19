@@ -1,14 +1,24 @@
 package Text::Slugify;
 # ABSTRACT: create URL slugs from text
-$Text::Slugify::VERSION = '0.001';
+$Text::Slugify::VERSION = '0.002';
 use warnings;
 use strict;
 
 use Exporter 'import';
+our $unaccent = 0;
+
+if(eval "require Text::Unaccent::PurePerl") {
+    $unaccent = 1;
+}
 our @EXPORT_OK = qw(slugify);
 
 sub slugify {
     my ($text) = @_;
+
+    if($unaccent) {
+        $text = Text::Unaccent::PurePerl::unac_string($text);
+    }
+
     $text =~ s/[^a-z0-9]+/-/gi;
     $text =~ s/^-?(.+?)-?$/$1/;
     $text =~ s/^(.+)$/\L$1/;
@@ -27,7 +37,7 @@ Text::Slugify - create URL slugs from text
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -38,6 +48,8 @@ version 0.001
 =head1 DESCRIPTION
 
 Takes a bit of text, removes puncuation, spaces and other junk to produce a string suitable for use in a URL.
+
+If you have L<Text::Unaccent::PurePerl> installed it will 'unaccent' accented characters instead of removing them.
 
 =head1 BUGS
 

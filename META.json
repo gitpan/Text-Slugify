@@ -4,7 +4,7 @@
       "Robert Norris <rob@eatenbyagrue.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.140640",
+   "generated_by" : "Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.142690",
    "license" : [
       "perl_5"
    ],
@@ -20,6 +20,9 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "Text::Unaccent::PurePerl" : "0"
+         },
          "requires" : {
             "Exporter" : "0"
          }
@@ -41,6 +44,6 @@
          "web" : "https://github.com/robn/Text-Slugify"
       }
    },
-   "version" : "0.001"
+   "version" : "0.002"
 }
 
